@@ -1,5 +1,7 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 
+const RENDER_URL = process.env.RENDER_URL || 'http://localhost:3000';
+
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -10,8 +12,8 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
-        description: 'Local server',
+        url: RENDER_URL,
+        description: 'Auto URL from .env or fallback to localhost',
       },
     ],
     components: {
@@ -47,6 +49,25 @@ const options = {
             sku: {
               type: 'string',
               example: 'MOUSE123'
+            }
+          }
+        },
+        Category: {
+          type: 'object',
+          required: ['name'],
+          properties: {
+            name: {
+              type: 'string',
+              example: 'Electronics'
+            },
+            description: {
+              type: 'string',
+              example: 'Devices and gadgets'
+            },
+            createdAt: {
+              type: 'string',
+              format: 'date-time',
+              example: '2025-06-07T12:34:56Z'
             }
           }
         }
