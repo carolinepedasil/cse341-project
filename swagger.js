@@ -17,64 +17,16 @@ const options = {
       },
     ],
     components: {
-      schemas: {
-        Product: {
-          type: 'object',
-          required: ['name', 'price', 'stock', 'sku'],
-          properties: {
-            name: {
-              type: 'string',
-              example: 'Wireless Mouse'
-            },
-            description: {
-              type: 'string',
-              example: 'A reliable wireless mouse with USB receiver'
-            },
-            price: {
-              type: 'number',
-              example: 29.99
-            },
-            category: {
-              type: 'string',
-              example: 'Electronics'
-            },
-            stock: {
-              type: 'number',
-              example: 100
-            },
-            imageUrl: {
-              type: 'string',
-              example: 'http://example.com/images/mouse.png'
-            },
-            sku: {
-              type: 'string',
-              example: 'MOUSE123'
-            }
-          }
+      securitySchemes: {
+        cookieAuth: {
+          type: 'apiKey',
+          in: 'cookie',
+          name: 'connect.sid',
         },
-        Category: {
-          type: 'object',
-          required: ['name'],
-          properties: {
-            name: {
-              type: 'string',
-              example: 'Electronics'
-            },
-            description: {
-              type: 'string',
-              example: 'Devices and gadgets'
-            },
-            createdAt: {
-              type: 'string',
-              format: 'date-time',
-              example: '2025-06-07T12:34:56Z'
-            }
-          }
-        }
-      }
-    }
+      },
+    },
   },
-  apis: ['./routes/*.js']
+  apis: ['./routes/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
